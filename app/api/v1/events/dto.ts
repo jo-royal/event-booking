@@ -9,3 +9,7 @@ export const eventSchema = z.object({
 });
 
 export type EventInput = z.infer<typeof eventSchema>;
+
+
+// For PATCH requests (all optional)
+export const eventUpdateSchema = eventSchema.partial();
