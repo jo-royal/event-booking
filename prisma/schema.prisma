@@ -21,6 +21,13 @@ enum Role {
   user
 }
 
+enum Status {
+  pending
+  paid
+  cancelled
+  refund
+}
+
 model User {
   id       Int      @id @default(autoincrement())
   email    String   @unique
@@ -36,7 +43,7 @@ model Booking {
   guestEmail String?  // required for guests
   tickets    Int
   total      Float
-  status     String   @default("pending") // pending, paid, cancelled
+  status     Status   @default(pending) 
   createdAt  DateTime @default(now())
 
   user  User?  @relation(fields: [userId], references: [id])
@@ -50,6 +57,9 @@ model Event {
   date        DateTime
   location    String
   price       Float
+  salesPrice Float
+  maxTickets  Int
+  ticketsCounts Int
   createdAt   DateTime  @default(now())
   bookings    Booking[]
 }
