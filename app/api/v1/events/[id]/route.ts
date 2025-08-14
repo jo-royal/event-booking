@@ -14,21 +14,23 @@ export async function GET(req: Request, { params }: Params) {
     return NextResponse.json({ error: 'Invalid ID' }, { status: 400 });
   }
 
-  const event = await prisma.event.findUnique({ where: { id }, include: {
-    bookings: {
-      select: {
-        id: true,
-        tickets: true,
-        total: true,
-        status: true,
-        guestEmail: true,
-        user: {
-          select: { id: true, email: true }
+  const event = await prisma.event.findUnique({ where: { id },
+
+    include: {
+      bookings: {
+        select: {
+          id: true,
+          tickets: true,
+          total: true,
+          status: true,
+          guestEmail: true,
+          user: {
+            select: { id: true, email: true }
+          }
         }
       }
     }
-  }
- });
+  });
   if (!event) {
     return NextResponse.json({ error: 'Event not found' }, { status: 404 });
   }
