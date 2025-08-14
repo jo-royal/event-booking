@@ -28,6 +28,7 @@ export async function POST(req: Request) {
     // Calculate total
     const total = event.price * tickets;
 
+
     const booking = await prisma.booking.create({
       data: {
         eventId,
@@ -38,6 +39,7 @@ export async function POST(req: Request) {
         status: 'pending',
       },
     });
+
 
     return NextResponse.json(booking, { status: 201 });
   } catch (err) {

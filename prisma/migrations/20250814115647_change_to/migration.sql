@@ -1,0 +1,4 @@
+-- AlterTable
+ALTER TABLE "public"."Event" ADD COLUMN     "maxTickets" INTEGER NOT NULL DEFAULT 10,
+ADD COLUMN     "salesPrice" DOUBLE PRECISION,
+ADD COLUMN     "ticketsCounts" INTEGER NOT NULL DEFAULT 0;

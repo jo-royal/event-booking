@@ -57,9 +57,9 @@ model Event {
   date        DateTime
   location    String
   price       Float
-  salesPrice Float
-  maxTickets  Int
-  ticketsCounts Int
+  salesPrice Float?
+  maxTickets  Int @default(10) 
+  ticketsCounts Int @default(0)
   createdAt   DateTime  @default(now())
   bookings    Booking[]
 }
