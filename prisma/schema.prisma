@@ -29,11 +29,16 @@ enum Status {
 }
 
 model User {
-  id       Int      @id @default(autoincrement())
-  email    String   @unique
-  password String
-  role     Role     @default(user)
-  bookings Booking[]
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  fname          String?
+  lname          String?
+  emailVerified  Boolean?  @default(false)
+  role      Role     @default(user)
+  bookings  Booking[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Booking {
